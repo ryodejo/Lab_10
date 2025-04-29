@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Indigo Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth"
+          });
+        });
+      });
+    });
+  </script>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 w-full bg-white shadow z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600">ERUM</h1>
+      <nav class="space-x-6 text-gray-700">
+        <a href="#home" class="hover:text-indigo-600">Home</a>
+        <a href="#services" class="hover:text-indigo-600">Services</a>
+        <a href="#about" class="hover:text-indigo-600">About Us</a>
+        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home" class="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-center px-4">
+    <h2 class="text-5xl font-bold mb-4">The Future of Technology — Today</h2>
+    <p class="text-xl mb-6">We create digital solutions for businesses</p>
+    <a href="#services" class="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition">Get Started</a>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 bg-gray-100">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-8">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold mb-2">Web Development</h3>
+          <p>Building modern websites and applications from scratch.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold mb-2">Mobile Applications</h3>
+          <p>iOS and Android development using Flutter.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold mb-2">Design and UX/UI</h3>
+          <p>Beautiful and user-friendly interfaces for your clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-4">About Us</h2>
+      <p class="text-lg">We are a team of experts passionate about technology and innovation every day.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 bg-gray-100">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-6">Contact</h2>
+      <p>Get in touch with us: <strong>ulansergali431080@gmail.com</strong></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6 text-center">
+    <p class="text-sm text-gray-500">&copy; 2025 Indigo Clone. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+
