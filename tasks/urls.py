@@ -1,7 +1,6 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from .views import register  # Импортируем представление регистрации
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('tasks.urls')),  # Подключаем маршруты `tasks`
+    path("register/", register, name="register"),  # Маршрут для регистрации
 ]

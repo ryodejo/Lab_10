@@ -1,8 +1,15 @@
 from django.contrib import admin
-from .models import Task
+from .models import Test, Topic
 
-@admin.register(Task)
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at')  # Показывать заголовок и дату
-    search_fields = ('title',)  # Поиск по названию задачи
-    list_filter = ('created_at',)  # Фильтр по дате
+class TopicInline(admin.TabularInline):  # Позволяет добавлять темы прямо при редактировании теста
+    model = Topic
+    extra = 1  # Количество пустых полей для добавления новых тем
+
+@admin.register(Test)
+class TestAdmin(admin.ModelAdmin):
+    list_display = ("title",)
+    inlines = [TopicInline]  # Включаем редактирование тем внутри теста
+
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ("title", "test")  # Показываем название темы и тест
