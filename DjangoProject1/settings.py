@@ -72,7 +72,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'DjangoProject1.wsgi.application'
 
 # Настройки базы данных
-# Подробнее: https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Используем SQLite
@@ -81,34 +80,40 @@ DATABASES = {
 }
 
 # Валидация паролей
-# Подробнее: https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # Интернационализация
-# Подробнее: https://docs.djangoproject.com/en/5.2/topics/i18n/
 LANGUAGE_CODE = 'ru'  # Установил русский язык по умолчанию
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
 USE_TZ = True
 
 # Настройки статических файлов (CSS, JS, изображения)
-# Подробнее: https://docs.djangoproject.com/en/5.2/howto/static-files/
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Папка для статических файлов (если используется)
+
+# Настройки медиа-файлов (если загружаются изображения или файлы)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Автоматическое определение типа первичного ключа
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Настройки авторизации и перенаправления после входа/выхода
+LOGIN_REDIRECT_URL = "/"  # После входа перенаправлять на главную страницу
+LOGOUT_REDIRECT_URL = "/"  # После выхода возвращать на главную страницу
+LOGIN_URL = "/login/"  # Если пользователь не авторизован, его перенаправят сюда
+
+# Включение настройки AUTHENTICATION_BACKENDS, если требуется кастомная авторизация
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",  # Стандартная система аутентификации Django
+]
+
+# Настройки сессий (срок хранения пользовательских данных в браузере)
+SESSION_COOKIE_AGE = 86400  # Время жизни сессии (24 часа)
+SESSION_SAVE_EVERY_REQUEST = True  # Продлевать сессию при каждом запросе
