@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Определение установленных приложений
 INSTALLED_APPS = [
     'tasks',
+    'frontend',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -95,7 +96,7 @@ USE_TZ = True
 
 # Настройки статических файлов (CSS, JS, изображения)
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]  # Папка для статических файлов (если используется)
+STATICFILES_DIRS = [BASE_DIR / "frontend/static"]  # Папка для статических файлов (если используется)
 
 # Настройки медиа-файлов (если загружаются изображения или файлы)
 MEDIA_URL = "/media/"

@@ -26,7 +26,7 @@ def register(request):
 def start_test(request, test_id):
     test = get_object_or_404(Test, id=test_id)
     questions = Question.objects.filter(topic__test=test)
-    return render(request, "tests/start_test.html", {"test": test, "questions": questions})
+    return render(request, "start_test.html", {"test": test, "questions": questions})
 
 @login_required
 def submit_test(request, test_id):
@@ -45,4 +45,11 @@ def submit_test(request, test_id):
     # Сохранение результата в базе
     TestResult.objects.create(user=request.user, test=test, score=score)
 
-    return render(request, "tests/result.html", {"test": test, "score": score})
+    return render(request, "result.html", {"test": test, "score": score})
+
+@login_required
+def result(request):
+    test = get_object_or_404(Test)
+    test_result = TestResult.objects.filter(user=request.user, test=test).last()
+
+    return render(request, "result.html", {"test": test, "test_result": test_result})
