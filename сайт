@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Indigo Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Открытие модального окна
+    function openModal() {
+      document.getElementById("modal").classList.remove("hidden");
+    }
+
+    // Закрытие модального окна
+    function closeModal() {
+      document.getElementById("modal").classList.add("hidden");
+    }
+
+    // Открытие окна авторизации
+    function openLoginModal() {
+      document.getElementById("loginModal").classList.remove("hidden");
+    }
+
+    // Закрытие окна авторизации
+    function closeLoginModal() {
+      document.getElementById("loginModal").classList.add("hidden");
+    }
+
+    // Открытие окна регистрации
+    function openSignUpModal() {
+      document.getElementById("signUpModal").classList.remove("hidden");
+    }
+
+    // Закрытие окна регистрации
+    function closeSignUpModal() {
+      document.getElementById("signUpModal").classList.add("hidden");
+    }
+
+    // Пример проверки логина
+    let isLoggedIn = false; // Для демонстрации, можно заменить на реальную проверку
+
+    // Плавный скролл
+    document.addEventListener('DOMContentLoaded', function () {
+      const scrollLink = document.querySelector('a[href="#services"]');
+      if (scrollLink) {
+        scrollLink.addEventListener('click', function (event) {
+          event.preventDefault();
+          document.querySelector('#services').scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // Проверка перед открытием теста
+      const takeTestButtons = document.querySelectorAll('.take-test');
+      takeTestButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          if (!isLoggedIn) {
+            openLoginModal(); // Если не залогинен, открываем окно для логина
+          } else {
+            window.location.href = this.href; // Если залогинен, переходим по ссылке
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 w-full bg-white shadow z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600">ERUM</h1>
+      <nav class="space-x-6 text-gray-700">
+        <a href="#home" class="hover:text-indigo-600">Home</a>
+        <a href="#services" class="hover:text-indigo-600">Choose a Test</a>
+        <a href="#about" class="hover:text-indigo-600">About Us</a>
+        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+      </nav>
+      <!-- Login and Sign Up buttons -->
+      <div class="space-x-6">
+        <button onclick="openLoginModal()" class="text-indigo-600 hover:text-indigo-800">Login</button>
+        <button onclick="openSignUpModal()" class="text-indigo-600 hover:text-indigo-800">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home" class="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-center px-4">
+    <h2 class="text-5xl font-bold mb-4">The Future of Technology — Today</h2>
+    <p class="text-xl mb-6">We create digital solutions for businesses</p>
+    <a href="#services" class="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition">Take Test</a>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+    <div class="bg-white p-8 rounded-lg w-1/3">
+      <button onclick="closeModal()" class="text-red-500 hover:text-red-700 absolute top-2 right-2 text-2xl">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4">UX/UI Test</h2>
+      <p>Answer these questions to check your knowledge:</p>
+      <!-- Контент теста -->
+      <form>
+        <div class="my-4">
+          <label for="question1" class="block">What is UX?</label>
+          <input type="text" id="question1" class="border p-2 w-full mt-2" placeholder="Your answer" />
+        </div>
+        <div class="my-4">
+          <label for="question2" class="block">What is the difference between UX and UI?</label>
+          <input type="text" id="question2" class="border p-2 w-full mt-2" placeholder="Your answer" />
+        </div>
+        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-full">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+    <div class="bg-white p-8 rounded-lg w-1/3">
+      <button onclick="closeLoginModal()" class="text-red-500 hover:text-red-700 absolute top-2 right-2 text-2xl">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4">You need to log in</h2>
+      <p>Please log in to take the test.</p>
+      <button onclick="isLoggedIn = true; closeLoginModal();" class="bg-indigo-600 text-white px-6 py-2 rounded-full">Log In</button>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div id="signUpModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+    <div class="bg-white p-8 rounded-lg w-1/3">
+      <button onclick="closeSignUpModal()" class="text-red-500 hover:text-red-700 absolute top-2 right-2 text-2xl">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4">Sign Up</h2>
+      <p>Create an account to take tests and track progress.</p>
+      <form>
+        <div class="my-4">
+          <label for="username" class="block">Username</label>
+          <input type="text" id="username" class="border p-2 w-full mt-2" placeholder="Your username" />
+        </div>
+        <div class="my-4">
+          <label for="email" class="block">Email</label>
+          <input type="email" id="email" class="border p-2 w-full mt-2" placeholder="Your email" />
+        </div>
+        <div class="my-4">
+          <label for="password" class="block">Password</label>
+          <input type="password" id="password" class="border p-2 w-full mt-2" placeholder="Your password" />
+        </div>
+        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-full">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 bg-gray-100">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-8">Choose a Test</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold mb-2">Math</h3>
+          <p>Test your mathematical knowledge.</p>
+          <a href="/tests/math" class="take-test inline-block mt-4 text-indigo-600 font-semibold hover:underline">Take Test</a>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold mb-2">History</h3>
+          <p>Check your history skills and knowledge.</p>
+          <a href="/tests/history" class="take-test inline-block mt-4 text-indigo-600 font-semibold hover:underline">Take Test</a>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold mb-2">Information Technology</h3>
+          <p>Do you know about your future?</p>
+          <a href="/tests/it" class="take-test inline-block mt-4 text-indigo-600 font-semibold hover:underline">Take Test</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 bg-gray-100">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-6">Contact</h2>
+      <p>Get in touch with us: <strong>ulansergali431080@gmail.com</strong></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6 text-center">
+    <p class="text-sm text-gray-500">&copy; 2025 Indigo Clone. All rights reserved.</p>
+  </footer>
+
+</body>
+</html> 
