@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import Test, Topic, Question, Answer
 
+from django.contrib import admin
+from .models import Test, Topic, Question, Answer
+
 class TopicInline(admin.TabularInline):  # Темы внутри теста
     model = Topic
     extra = 1

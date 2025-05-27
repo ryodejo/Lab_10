@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="page-bg container mx-auto px-4 py-8 max-w-4xl">
+    <h2 class="text-2xl font-bold mb-6">{{ test.title }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for question in test.question_set.all %}
+            <div class="mb-6">
+                <p class="font-semibold mb-2">{{ forloop.counter }}. {{ question.text }}</p>
+
+                {% for choice in question.choice_set.all %}
+                    <label class="block mb-1 cursor-pointer">
+                        <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" required>
+                        {{ choice.text }}
+                    </label>
+                {% empty %}
+                    <p class="text-gray-500 italic">Нет вариантов ответа</p>
+                {% endfor %}
+            </div>
+        {% empty %}
+            <p>Вопросы для этого теста пока не добавлены.</p>
+        {% endfor %}
+
+        <button type="submit" class="start-test-btn">Submit Test</button>
+    </form>
+</div>
+{% endblock %}
